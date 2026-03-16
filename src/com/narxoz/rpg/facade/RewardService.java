@@ -1,11 +1,27 @@
 package com.narxoz.rpg.facade;
 
 public class RewardService {
+
     public String determineReward(AdventureResult battleResult) {
-        // TODO: Decide reward rules based on battle outcome.
+
         if (battleResult == null) {
-            return "TODO";
+            throw new IllegalArgumentException("Battle result cannot be null");
         }
-        return "TODO";
+
+        String winner = battleResult.getWinner();
+
+        if (winner == null) {
+            return "No reward";
+        }
+
+        if (winner.equalsIgnoreCase("Draw")) {
+            return "Small consolation reward: 10 gold";
+        }
+
+        if (winner.equalsIgnoreCase("Boss")) {
+            return "No reward. The hero was defeated.";
+        }
+
+        return "Victory reward: 100 gold and epic item";
     }
 }
