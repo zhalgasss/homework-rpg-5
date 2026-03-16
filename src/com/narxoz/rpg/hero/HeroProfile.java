@@ -1,6 +1,7 @@
 package com.narxoz.rpg.hero;
 
 public class HeroProfile {
+
     private final String name;
     private int health;
 
@@ -18,12 +19,19 @@ public class HeroProfile {
     }
 
     public void takeDamage(int amount) {
-        // TODO: Decide how health should be reduced and clamped.
+
+        if (amount < 0) {
+            return;
+        }
+
         health -= amount;
+
+        if (health < 0) {
+            health = 0;
+        }
     }
 
     public boolean isAlive() {
-        // TODO: Decide whether additional conditions belong here.
         return health > 0;
     }
 }
